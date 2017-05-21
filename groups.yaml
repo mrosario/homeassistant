@@ -1,0 +1,87 @@
+### groups.yaml ###
+### VIEWS
+  #default_view:
+main:
+  name: main
+  view: yes
+  entities:
+    - sun.sun
+    - sensor.yr_symbol
+    - sensor.temp_dining  
+    - sensor.hum_dining  
+    - sensor.ldr_dining  
+    - sensor.motion_dining
+    - sensor.temp_kitchen  
+    - sensor.hum_kitchen
+    - sensor.ldr_kitchen  
+    - sensor.motion_kitchen
+    - input_select.home_mode
+    - scene.AllOff
+    - scene.AllOn
+    - scene.dimmedLights
+    - media_player.living_room
+    - media_player.dining_room
+
+ LivingRoom:
+  name: LivingRoom
+  view: yes
+  entities:
+    - group.LivingRoom_Lights
+    - switch.home_mode
+    - switch.Playstation
+    - switch.speakers
+    - media_player.living_room
+
+DiningRoom:
+  name: Dining Room
+  view: yes
+  entities:
+    - group.DiningRoom_Lights
+    - media_player.dining_room
+    - switch.GameMode
+    - switch.home_mode
+    - switch.DinnerMode
+
+Bedroom:
+  name: Bedroom
+  view: yes
+  entities:
+    - group.Bedroom_Lights
+    - switch.SleepMode
+    - switch.home_mode
+
+Kitchen:
+  name: kitchen
+  view: yes
+  entities:
+    - group.Kitchen_Lights
+    - switch.home_mode
+
+
+### GROUPS
+DiningRoom_Lights:
+  name: Dining Room Lights
+  entities:
+    - light.d1
+    - light.d2
+    - light.d3
+    - light.mood
+
+LivingRoom_Lights:
+  name: Living Room Lights
+  entities:
+    - light.t1
+    - light.t2
+    - light.t3
+
+Bedroom_Lights:
+  name: Bedroom Lights
+  entities:
+    - light.b1
+    - light.b2
+
+Kitchen_Lights:
+  name: Kitchen Lights
+  entities:
+    - light.k1
+    - light.k2

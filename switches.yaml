@@ -1,0 +1,98 @@
+### switches.yaml ###
+  - platform: mqtt
+    name: "TV"
+    command_topic: "smartthings/TV/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1
+
+  - platform: mqtt
+    name: "Playstation"
+    command_topic: "smartthings/playstation/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1
+
+  - platform: mqtt
+    name: "Home Mode"
+    command_topic: "smartthings/home_mode/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1
+
+  - platform: mqtt
+    name: "Away"
+    command_topic: "smartthings/Away/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1
+
+  - platform: mqtt
+    name: "DinnerMode"
+    command_topic: "smartthings/DinnerMode/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1
+
+  - platform: mqtt
+    name: "GameMode"
+    command_topic: "smartthings/GameMode/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1
+
+  - platform: mqtt
+    name: "SleepMode"
+    command_topic: "smartthings/SleepMode/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1
+
+  - platform: mqtt
+    name: "ps4_harmony"
+    command_topic: "smartthings/ps4_harmony/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1
+
+  - platform: mqtt
+    name: "vizio_harmony"
+    command_topic: "smartthings/vizio_harmony/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1
+
+  - platform: mqtt
+    name: "all_lights"
+    command_topic: "smartthings/all_lights/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1
+
+  - platform: mqtt
+    name: "dimmed_lights"
+    command_topic: "smartthings/dimmed_lights/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1
+
+  - platform: mqtt
+    name: "speakers"
+    command_topic: "smartthings/speakers/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1
+
+  - platform: mqtt
+    name: "pause"
+    command_topic: "smartthings/pause/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1
+
+  - platform: mqtt
+    name: "resume"
+    command_topic: "smartthings/resume/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 1

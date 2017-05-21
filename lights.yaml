@@ -1,0 +1,122 @@
+### lights.yaml ###
+- platform: mqtt
+    name: "d1"
+    command_topic: "smartthings/d1/switch"
+    brightness_command_topic: "smartthings/d1/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/d1/level"
+    optimistic: true
+
+
+- platform: mqtt
+    name: "d2"
+    command_topic: "smartthings/d2/switch"
+    brightness_command_topic: "smartthings/d2/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/d2/level"
+    optimistic: true
+
+- platform: mqtt
+    name: "d3"
+    command_topic: "smartthings/d3/switch"
+    brightness_command_topic: "smartthings/d3/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/d3/level"
+    optimistic: true
+
+- platform: mqtt
+    name: "mood"
+    command_topic: "smartthings/mood/switch"
+    brightness_command_topic: "smartthings/mood/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/mood/level"
+    optimistic: true
+
+- platform: mqtt
+    name: "t1"
+    command_topic: "smartthings/t1/switch"
+    brightness_command_topic: "smartthings/t1/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/t1/level"
+    optimistic: true
+
+- platform: mqtt
+    name: "t2"
+    command_topic: "smartthings/t2/switch"
+    brightness_command_topic: "smartthings/t2/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/t2/level"
+    optimistic: true
+
+- platform: mqtt
+    name: "t3"
+    command_topic: "smartthings/t3/switch"
+    brightness_command_topic: "smartthings/t3/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/t3/level"
+    optimistic: true
+
+- platform: mqtt
+    name: "b1"
+    command_topic: "smartthings/b1/switch"
+    brightness_command_topic: "smartthings/b1/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/b1/level"
+    optimistic: true
+
+- platform: mqtt
+    name: "b2"
+    command_topic: "smartthings/b2/switch"
+    brightness_command_topic: "smartthings/b2/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/b2/level"
+    optimistic: true
+
+- platform: mqtt
+    name: "k1"
+    command_topic: "smartthings/k1/switch"
+    brightness_command_topic: "smartthings/k1/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/k1/level"
+    optimistic: true
+
+- platform: mqtt
+    name: "k2"
+    command_topic: "smartthings/k2/switch"
+    brightness_command_topic: "smartthings/k2/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/k2/level"
+    optimistic: true

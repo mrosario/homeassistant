@@ -1,0 +1,31 @@
+### scripts.yaml ###
+
+speakers_on:
+  alias: "Speakers On"
+  sequence:
+    - delay: 00:00:15
+    - service: switch.turn_on
+      data:
+        entity_id: switch.speakers
+
+
+speakersoff_ps4:
+  sequence:
+    - service: homeassistant.turn_off
+      data:
+        entity_id: switch.speakers
+    - delay: 00:00:02
+    - service: switch.turn_off
+        data:
+          entity_id: switch.ps4_harmony
+
+
+speakersoff_vizio:
+  sequence:
+    - service: homeassistant.turn_off
+        data:
+          entity_id: switch.speakers
+    - delay: 00:00:01
+    - service: switch.turn_off
+        data:
+          entity_id: switch.vizio_harmony
