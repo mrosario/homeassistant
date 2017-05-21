@@ -1,0 +1,1034 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 26
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+
+  customize:
+    sensor.yr_symbol:
+      alias: weather
+    light.t1:
+      assumed_state: false
+      icon: mdi:lightbulb
+    light.t2:
+      assumed_state: false
+      icon: mdi:lightbulb
+    light.t3:
+      assumed_state: false
+      icon: mdi:lightbulb
+    light.d1:
+      assumed_state: false
+      icon: mdi:lightbulb
+    light.d2:
+      assumed_state: false
+      icon: mdi:lightbulb
+    light.d3:
+      assumed_state: false
+      icon: mdi:lightbulb
+    light.mood:
+      assumed_state: false
+      icon: mdi:lightbulb
+    light.b1:
+      assumed_state: false
+      icon: mdi:lightbulb
+    light.b2:
+      assumed_state: false
+      icon: mdi:lightbulb
+    light.k1:
+      assumed_state: false
+      icon: mdi:lightbulb
+    light.k2:
+      assumed_state: false
+      icon: mdi:lightbulb
+    switch.playstation:
+      entity_picture: /local/playstation.png
+    switch.home_mode:
+      entity_picture: /local/lightsOn.png
+    switch.SleepMode:
+      entity_picture: /local/goodnight.png
+    switch.TV:
+      entity_picture: /local/tv.png
+    switch.DinnerMode:
+      entity_picture: /local/dinner.png
+    switch.GameMode:
+      entity_picture: /local/520571-dice-512.png
+    switch.speakers:
+      entity_picture: /local/speakers.png
+    switch.away:
+      entity_picture: /local/away.png
+    scene.AllOn:
+      entity_picture: /local/lightsOn.png
+    scene.AllOff:
+      entity_picture: /local/away.png
+    scene.dimmedLights:
+      entity_picture: /local/lightsOff.png
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  api_password: !secret api_password
+  server_port: 8123
+  # Uncomment this if you are using SSL or running in Docker etc
+  #base_url: michaelcomputer.duckdns.org:8124
+  #ssl_certificate: '/etc/letsencrypt/live/michaelcomputer.duckdns.org/fullchain.pem'
+  #ssl_key: '/etc/letsencrypt/live/michaelcomputer.duckdns.org/privkey.pem'
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Weather Prediction
+sensor: !include sensors.yaml
+
+# Text to speech
+tts:
+  platform: google
+
+# mqtt
+mqtt:
+  broker: localhost
+  port: 1883
+  client_id: HA
+  username: !secret mosquitto_username
+  password: !secret mosquitto_pw
+
+input_select:
+  home_mode:
+    name: Home Mode
+    options:
+      - "Home"
+      - "Away"
+      - "Playstation"
+      - "TV"
+      - "Boardgame"
+      - "Dinner"
+      - "Evening"
+      - "Goodnight"
+    icon: mdi:target
+
+# smartthings MQTT devices
+switch:
+  
+  - platform: mqtt
+    name: "LED"
+    command_topic: "smartthings/LED/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "TV"
+    command_topic: "smartthings/TV/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "Playstation"
+    command_topic: "smartthings/playstation/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "Home Mode"
+    command_topic: "smartthings/home_mode/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "Away"
+    command_topic: "smartthings/Away/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "DinnerMode"
+    command_topic: "smartthings/DinnerMode/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "GameMode"
+    command_topic: "smartthings/GameMode/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "SleepMode"
+    command_topic: "smartthings/SleepMode/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "ps4_harmony"
+    command_topic: "smartthings/ps4_harmony/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "vizio_harmony"
+    command_topic: "smartthings/vizio_harmony/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "all_lights"
+    command_topic: "smartthings/all_lights/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "dimmed_lights"
+    command_topic: "smartthings/dimmed_lights/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "speakers"
+    command_topic: "smartthings/speakers/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "pause"
+    command_topic: "smartthings/pause/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+  - platform: mqtt
+    name: "resume"
+    command_topic: "smartthings/resume/switch"
+    payload_on: "on"
+    payload_off: "off"
+    qos: 2
+
+light:
+  - platform: mqtt
+    name: "d1"
+    command_topic: "smartthings/d1/switch"
+    brightness_command_topic: "smartthings/d1/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/d1/level"
+    optimistic: true
+
+
+  - platform: mqtt
+    name: "d2"
+    command_topic: "smartthings/d2/switch"
+    brightness_command_topic: "smartthings/d2/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/d2/level"
+    optimistic: true
+
+  - platform: mqtt
+    name: "d3"
+    command_topic: "smartthings/d3/switch"
+    brightness_command_topic: "smartthings/d3/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/d3/level"
+    optimistic: true
+
+  - platform: mqtt
+    name: "mood"
+    command_topic: "smartthings/mood/switch"
+    brightness_command_topic: "smartthings/mood/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/mood/level"
+    optimistic: true
+
+  - platform: mqtt
+    name: "t1"
+    command_topic: "smartthings/t1/switch"
+    brightness_command_topic: "smartthings/t1/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/t1/level"
+    optimistic: true
+
+  - platform: mqtt
+    name: "t2"
+    command_topic: "smartthings/t2/switch"
+    brightness_command_topic: "smartthings/t2/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/t2/level"
+    optimistic: true
+
+  - platform: mqtt
+    name: "t3"
+    command_topic: "smartthings/t3/switch"
+    brightness_command_topic: "smartthings/t3/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/t3/level"
+    optimistic: true
+
+  - platform: mqtt
+    name: "b1"
+    command_topic: "smartthings/b1/switch"
+    brightness_command_topic: "smartthings/b1/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/b1/level"
+    optimistic: true
+
+  - platform: mqtt
+    name: "b2"
+    command_topic: "smartthings/b2/switch"
+    brightness_command_topic: "smartthings/b2/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/b2/level"
+    optimistic: true
+
+  - platform: mqtt
+    name: "k1"
+    command_topic: "smartthings/k1/switch"
+    brightness_command_topic: "smartthings/k1/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/k1/level"
+    optimistic: true
+
+  - platform: mqtt
+    name: "k2"
+    command_topic: "smartthings/k2/switch"
+    brightness_command_topic: "smartthings/k2/level"
+    brightness_scale: 100
+    payload_off: "off"
+    payload_on: "on"
+    qos: 2
+    brightness_state_topic: "smartthings/k2/level"
+    optimistic: true
+
+
+group:
+  ### VIEWS
+  default_view:
+    view: yes
+    entities:
+      - sun.sun
+      - sensor.yr_symbol
+      - sensor.temp_dining  
+      - sensor.hum_dining  
+      - sensor.ldr_dining  
+      - sensor.motion_dining
+      - sensor.temp_kitchen  
+      - sensor.hum_kitchen
+      - sensor.ldr_kitchen  
+      - sensor.motion_kitchen
+      - device_tracker.mike_opo
+      - input_select.home_mode
+      - scene.AllOff
+      - scene.AllOn
+      - scene.dimmedLights
+      - media_player.living_room
+      - media_player.dining_room
+
+  LivingRoom:
+    name: LivingRoom
+    view: yes
+    entities:
+      - group.LivingRoom_Lights
+      - switch.home_mode
+      - switch.Playstation
+      - switch.speakers
+      - media_player.living_room
+
+  DiningRoom:
+    name: Dining Room
+    view: yes
+    entities:
+      - group.DiningRoom_Lights
+      - media_player.dining_room
+      - switch.GameMode
+      - switch.home_mode
+      - switch.DinnerMode
+
+  Bedroom:
+    name: Bedroom
+    view: yes
+    entities:
+      - group.Bedroom_Lights
+      - switch.SleepMode
+      - switch.home_mode
+
+  Kitchen:
+    name: kitchen
+    view: yes
+    entities:
+      - group.Kitchen_Lights
+      - switch.home_mode
+
+  ### GROUPS
+  DiningRoom_Lights:
+    name: Dining Room Lights
+    entities:
+      - light.d1
+      - light.d2
+      - light.d3
+      - light.mood
+  LivingRoom_Lights:
+    name: Living Room Lights
+    entities:
+      - light.t1
+      - light.t2
+      - light.t3
+  Bedroom_Lights:
+    name: Bedroom Lights
+    entities:
+      - light.b1
+      - light.b2
+  Kitchen_Lights:
+    name: Kitchen Lights
+    entities:
+      - light.k1
+      - light.k2
+
+scene:
+  - name: Theater_lights
+    entities:
+      light.d1:
+        state: off
+      light.d2:
+        state: off
+      light.d3:
+        state: off
+      light.mood:
+        state: on
+        brightness: 10
+      group.Bedroom_Lights:
+        state: off
+      light.k2:
+        state: off
+      light.k1:
+        state: on
+        brightness: 10
+      light.t1:
+        state: on
+        brightness: 10
+      light.t2:
+        state: off
+      light.t3:
+        state: off
+
+  - name: Dinner
+    entities:
+      group.LivingRoom_Lights: 
+        state: off
+      group.Bedroom_Lights: 
+        state: off
+      group.Kitchen_Lights:
+        state: on
+        brightness: 40
+      light.d1:
+        state: on
+        brightness: 25
+      light.d2:
+        state: on
+        brightness: 25
+      light.d3:
+        state: on
+        brightness: 25
+      light.mood:
+        state: on
+        brightness: 100
+
+
+  - name: AllOn
+    entities:
+      group.LivingRoom_Lights:
+        state: on
+        brightness: 255
+      group.Bedroom_Lights:
+        state: on
+        brightness: 255
+      group.Kitchen_Lights:
+        state: on
+        brightness: 255
+      light.d1:
+        state: on
+        brightness: 150
+      light.d2:
+        state: on
+        brightness: 150
+      light.d3:
+        state: on
+        brightness: 150
+      light.mood:
+        state: on
+        brightness: 255
+
+  - name: Boardgame
+    entities:
+      group.LivingRoom_Lights: off
+      group.Kitchen_Lights: off
+      group.Bedroom_Lights: off
+      group.DiningRoom_Lights:
+        state: on
+        brightness: 255
+
+  - name: dimmedLights
+    entities:
+      group.LivingRoom_Lights:
+        state: on
+        brightness: 75
+      group.Kitchen_Lights:
+        state: on
+        brightness: 75
+      group.Bedroom_Lights:
+        state: on
+        brightness: 75
+      group.DiningRoom_Lights:
+        state: on
+        brightness: 75
+
+  - name: Goodnight
+    entities:
+      light.t1:
+        state: on
+        brightness: 10       
+      light.t2:
+        state: off
+      light.t3:
+        state: off
+      light.d1:
+        state: off
+      light.d2:
+        state: off
+      light.d3:
+        state: off
+      light.mood:
+        state: on
+        brightness: 10
+      light.k1:
+        state: on
+        brightness: 10
+      light.k2:
+        state: off
+      light.b1:
+        state: on
+        brightness: 100
+      light.b2:
+        state: on
+        brightness: 100
+
+  - name: AllOff
+    entities:
+      group.all_lights: off
+
+# scripts to delay speakers turning on/off
+script:
+  speakers_on:
+    alias: "Speakers On"
+    sequence:
+      - delay: 00:00:15
+      - service: switch.turn_on
+        data:
+          entity_id: switch.speakers
+
+
+  speakersoff_ps4:
+    sequence:
+      - service: homeassistant.turn_off
+        data:
+          entity_id: switch.speakers
+      - delay: 00:00:07
+      - service: switch.turn_off
+        data:
+          entity_id: switch.ps4_harmony
+
+
+  speakersoff_vizio:
+    sequence:
+      - service: homeassistant.turn_off
+        data:
+          entity_id: switch.speakers
+      - delay: 00:00:01
+      - service: switch.turn_off
+        data:
+          entity_id: switch.vizio_harmony
+
+
+
+automation:
+## media player
+  - alias: "Media player paused"
+    trigger:
+      platform: state
+      entity_id: media_player.living_room
+      from: 'playing'
+      to: 'paused'
+    action:
+      service: scene.turn_on
+      entity_id: scene.dimmedLights
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+
+  - alias: "Media playing"
+    trigger:
+      platform: state
+      entity_id: media_player.living_room
+      to: 'playing'
+    action:
+      service: scene.turn_on
+      entity_id: scene.Theater_lights
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+
+  # listen for drop down input to MQTT
+  - alias: "Set home mode"
+    trigger:
+      platform: state
+      entity_id: input_select.home_mode
+    action:
+      service: mqtt.publish
+      data_template:
+        topic: "homeMode"
+        retain: true
+        payload: '{{ states.input_select.home_mode.state }}'
+
+  #Home,Away,Playstation,Movie,Boardgame,Goodnight
+  - alias: "Home Mode - dim"
+    trigger:
+      platform: mqtt
+      topic: "homeMode"
+      payload: "Home"
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'above_horizon'
+    action:
+      service: scene.turn_on
+      entity_id: scene.dimmedLights
+
+  - alias: "Home Mode - all on"
+    trigger:
+      platform: mqtt
+      topic: "homeMode"
+      payload: "Home"
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+    action:
+      service: scene.turn_on
+      entity_id: scene.AllOn
+
+  - alias: "Away - after sunset"
+    trigger:
+      platform: mqtt
+      topic: "homeMode"
+      payload: "Away"
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+    action:
+      service: scene.turn_on
+      entity_id: scene.dimmedLights
+
+  - alias: "Away - before sunset"
+    trigger:
+      platform: mqtt
+      topic: "homeMode"
+      payload: "Away"
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'above_horizon'
+    action:
+      service: scene.turn_on
+      entity_id: scene.AllOff
+
+  - alias: "Goodnight"
+    trigger:
+      platform: mqtt
+      topic: "homeMode"
+      payload: "Goodnight"
+    action:
+      service: scene.turn_on
+      entity_id: scene.Goodnight
+
+  - alias: "Evening"
+    trigger:
+      platform: mqtt
+      topic: "homeMode"
+      payload: "Evening"
+    action:
+      service: scene.turn_on
+      entity_id: scene.dimmedLights
+
+  - alias: "Boardgame"
+    trigger:
+      platform: mqtt
+      topic: "homeMode"
+      payload: "Boardgame"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.Boardgame
+
+  - alias: "EveningMode"
+    trigger:
+      platform: mqtt
+      topic: "homeMode"
+      payload: "Evening"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.dimmedLights
+
+  - alias: "Dinner"
+    trigger:
+      platform: mqtt
+      topic: "homeMode"
+      payload: "Dinner"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.Dinner
+      - service: media_player.select_source
+        data:
+          entity_id: media_player.dining_room
+          source: 'dinner music (2)'
+#      - service: media_player.media_play
+
+  - alias: "Playstation"
+    trigger:
+      platform: mqtt
+      topic: "homeMode"
+      payload: "Playstation"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.dimmedLights
+      - service: switch.turn_on
+        entity_id: switch.ps4_harmony
+      - service: script.turn_on
+        entity_id: script.speakers_on
+
+  - alias: "TV"
+    trigger:
+      platform: mqtt
+      topic: "homeMode"
+      payload: "TV"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.dimmedLights
+      - service: switch.turn_on
+        entity_id: switch.vizio_harmony
+      - service: script.turn_on
+        entity_id: script.speakers_on
+
+# interface with virtual switches
+  - alias: "Playstation_virtual"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/Playstation/switch"
+      payload: "on"
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_mode
+          option: Playstation
+
+  - alias: "TV_virtual"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/TV/switch"
+      payload: "on"
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_mode
+          option: TV
+
+  - alias: "home_mode_virtual"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/home_mode/switch"
+      payload: "on"
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_mode
+          option: Home
+
+  - alias: "Away_virtual"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/Away/switch"
+      payload: "on"
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_mode
+          option: Away
+
+  - alias: "Dinner Mode_virtual"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/DinnerMode/switch"
+      payload: "on"
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_mode
+          option: Dinner
+
+  - alias: "GameMode_virtual"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/GameMode/switch"
+      payload: "on"
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_mode
+          option: Boardgame
+
+  - alias: "Sleep Mode_virtual"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/SleepMode/switch"
+      payload: "on"
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_mode
+          option: Goodnight
+
+  - alias: "EveningMode_virtual"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/EveningMode/switch"
+      payload: "on"
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_mode
+          option: Evening
+
+# turn off harmony switches
+  - alias: "turn off Playstation"
+    trigger:
+      platform: state
+      entity_id: input_select.home_mode
+      from: "Playstation"
+    condition: 
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: 'input_select.home_mode'
+          state: 'Home'
+        - condition: state
+          entity_id: 'input_select.home_mode'
+          state: 'Away'
+        - condition: state
+          entity_id: 'input_select.home_mode'
+          state: 'Boardgame'
+        - condition: state
+          entity_id: 'input_select.home_mode'
+          state: 'Goodnight'
+        - condition: state
+          entity_id: 'input_select.home_mode'
+          state: 'Dinner'
+        - condition: state
+          entity_id: 'input_select.home_mode'
+          state: 'Evening'
+    action:
+      - service: script.turn_on
+        entity_id: script.speakersoff_ps4
+
+  - alias: "turn off TV"
+    trigger:
+      platform: state
+      entity_id: input_select.home_mode
+      from: "TV"
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: 'input_select.home_mode'
+          state: 'Home'
+        - condition: state
+          entity_id: 'input_select.home_mode'
+          state: 'Away'
+        - condition: state
+          entity_id: 'input_select.home_mode'
+          state: 'Boardgame'
+        - condition: state
+          entity_id: 'input_select.home_mode'
+          state: 'Goodnight'
+        - condition: state
+          entity_id: 'input_select.home_mode'
+          state: 'Dinner'
+        - condition: state
+          entity_id: 'input_select.home_mode'
+          state: 'Evening'
+    action:
+      - service: script.turn_on
+        entity_id: script.speakersoff_vizio   
+
+# pause and resume through virtual switch
+  - alias: "pause"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/pause/switch"
+      payload: "on"
+    action:
+      - service: media_player.media_pause
+        entity_id: media_player.living_room
+
+  - alias: "resume"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/resume/switch"
+      payload: "on"
+    action:
+      - service: media_player.media_play
+        entity_id: media_player.living_room
+
+# lighting automation
+  - alias: "Welcome Home"
+    trigger:
+      platform: state
+      entity_id: device_tracker.mike_opo
+      to: 'home'
+      from: 'away'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_mode
+          option: Home
+
+
+  - alias: "lights off - away"
+    trigger:
+      platform: time
+      after: '23:00:00'
+    condition:
+      condition: state
+      entity_id: input_select.home_mode
+      state: Away
+    action:
+      - service: scene.turn_on
+        entity_id: scene.AllOff
+
+  - alias: "lights on - away"
+    trigger:
+      platform: time
+      after: '18:00:00'
+    condition:
+      condition: state
+      entity_id: input_select.home_mode
+      state: Away
+    action:
+      - service: scene.turn_on
+        entity_id: scene.dimmedLights
+
+
+# lights control - no mode change
+  - alias: "all lights"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/all_lights/switch"
+      payload: "on"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.AllOn
+
+  - alias: "all lights"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/dimmed_lights/switch"
+      payload: "on"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.dimmedLights
+
+  - alias: "LED"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/LED/switch"
+      payload: "on"
+    action:
+      service: mqtt.publish
+      data_template:
+        topic: "inTopic"
+        retain: true
+        payload: '1'
+
+  - alias: "LED"
+    trigger:
+      platform: mqtt
+      topic: "smartthings/LED/switch"
+      payload: "off"
+    action:
+      service: mqtt.publish
+      data_template:
+        topic: "inTopic"
+        retain: true
+        payload: '0'   

@@ -1,0 +1,45 @@
+### sensors.yaml ###
+
+- platform: yr
+
+# minimikes #
+
+#dining room
+- platform: mqtt  
+  state_topic: "minimike/dining/motion"  
+  name: "motion_dining"   
+
+- platform: mqtt  
+  state_topic: "minimike/dining/temp"  
+  name: "temp_dining"
+  unit_of_measurement: "°F"
+
+- platform: mqtt  
+  state_topic: "minimike/dining/hum"  
+  name: "hum_dining"  
+  unit_of_measurement: "%" 
+
+- platform: mqtt  
+  state_topic: "minimike/dining/ldr"  
+  name: "ldr_dining"  
+  unit_of_measurement: "LUX"  
+
+#kitchen
+- platform: mqtt  
+  state_topic: "minimike/kitchen/motion"  
+  name: "motion_kitchen"   
+
+- platform: mqtt  
+  state_topic: "minimike/kitchen/temp"  
+  name: "temp_kitchen"
+  unit_of_measurement: "°F"
+
+- platform: mqtt  
+  state_topic: "minimike/kitchen/hum"  
+  name: "hum_kitchen"  
+  unit_of_measurement: "%" 
+
+- platform: mqtt  
+  state_topic: "minimike/kitchen/ldr"  
+  name: "ldr_kitchen"  
+  unit_of_measurement: "LUX"
