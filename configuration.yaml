@@ -113,9 +113,9 @@ tts:
 mqtt:
   broker: localhost
   port: 1883
-  client_id: HA
-  username: !secret mosquitto_username
-  password: !secret mosquitto_pw
+  #client_id: HA
+  #username: !secret mosquitto_username
+  #password: !secret mosquitto_pw
 
 input_select:
   home_mode:
