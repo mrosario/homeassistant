@@ -16,16 +16,16 @@ speakersoff_ps4:
         entity_id: switch.speakers
     - delay: 00:00:02
     - service: switch.turn_off
-        data:
-          entity_id: switch.ps4_harmony
+      data:
+        entity_id: switch.ps4_harmony
 
 
 speakersoff_vizio:
   sequence:
     - service: homeassistant.turn_off
-        data:
-          entity_id: switch.speakers
+      data:
+        entity_id: switch.speakers
     - delay: 00:00:01
     - service: switch.turn_off
-        data:
-          entity_id: switch.vizio_harmony
+      data:
+        entity_id: switch.vizio_harmony
