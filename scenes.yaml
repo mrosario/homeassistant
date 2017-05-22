@@ -1,132 +1,131 @@
 ### scenes.yaml ###
 
 - name: Theater_lights 
-    entities:
-      light.d1:
-        state: off
-      light.d2:
-        state: off
-      light.d3:
-        state: off
-      light.mood:
-        state: on
-        brightness: 10
-      group.Bedroom_Lights:
-        state: off
-      light.k2:
-        state: off
-      light.k1:
-        state: on
-        brightness: 10
-      light.t1:
-        state: on
-        brightness: 10
-      light.t2:
-        state: off
-      light.t3:
-        state: off
+  entities:
+    light.d1:
+      state: off
+    light.d2:
+      state: off
+    light.d3:
+      state: off
+    light.mood:
+      state: on
+      brightness: 10
+    group.Bedroom_Lights:
+      state: off
+    light.k2:
+      state: off
+    light.k1:
+      state: on
+      brightness: 10
+    light.t1:
+      state: on
+      brightness: 10
+    light.t2:
+      state: off
+    light.t3:
+      state: off
 
 - name: Dinner
-    entities:
-      group.LivingRoom_Lights: 
-        state: off
-      group.Bedroom_Lights: 
-        state: off
-      group.Kitchen_Lights:
-        state: on
-        brightness: 40
-      light.d1:
-        state: on
-        brightness: 25
-      light.d2:
-        state: on
-        brightness: 25
-      light.d3:
-        state: on
-        brightness: 25
-      light.mood:
-        state: on
-        brightness: 100
-
+  entities:
+    group.LivingRoom_Lights: 
+      state: off
+    group.Bedroom_Lights: 
+      state: off
+    group.Kitchen_Lights:
+      state: on
+      brightness: 40
+    light.d1:
+      state: on
+      brightness: 25
+    light.d2:
+      state: on
+      brightness: 25
+    light.d3:
+      state: on
+      brightness: 25
+    light.mood:
+      state: on
+      brightness: 100
 
 - name: AllOn
-    entities:
-      group.LivingRoom_Lights:
-        state: on
-        brightness: 255
-      group.Bedroom_Lights:
-        state: on
-        brightness: 255
-      group.Kitchen_Lights:
-        state: on
-        brightness: 255
-      light.d1:
-        state: on
-        brightness: 150
-      light.d2:
-        state: on
-        brightness: 150
-      light.d3:
-        state: on
-        brightness: 150
-      light.mood:
-        state: on
-        brightness: 255
+  entities:
+    group.LivingRoom_Lights:
+      state: on
+      brightness: 255
+    group.Bedroom_Lights:
+      state: on
+      brightness: 255
+    group.Kitchen_Lights:
+      state: on
+      brightness: 255
+    light.d1:
+      state: on
+      brightness: 150
+    light.d2:
+      state: on
+      brightness: 150
+    light.d3:
+      state: on
+      brightness: 150
+    light.mood:
+      state: on
+      brightness: 255
 
 - name: Boardgame
-    entities:
-      group.LivingRoom_Lights: off
-      group.Kitchen_Lights: off
-      group.Bedroom_Lights: off
-      group.DiningRoom_Lights:
-        state: on
-        brightness: 255
+  entities:
+    group.LivingRoom_Lights: off
+    group.Kitchen_Lights: off
+    group.Bedroom_Lights: off
+    group.DiningRoom_Lights:
+      state: on
+      brightness: 255
 
 - name: dimmedLights
-    entities:
-      group.LivingRoom_Lights:
-        state: on
-        brightness: 75
-      group.Kitchen_Lights:
-        state: on
-        brightness: 75
-      group.Bedroom_Lights:
-        state: on
-        brightness: 75
-      group.DiningRoom_Lights:
-        state: on
-        brightness: 75
+  entities:
+    group.LivingRoom_Lights:
+      state: on
+      brightness: 75
+    group.Kitchen_Lights:
+      state: on
+      brightness: 75
+    group.Bedroom_Lights:
+      state: on
+      brightness: 75
+    group.DiningRoom_Lights:
+      state: on
+      brightness: 75
 
 - name: Goodnight
-    entities:
-      light.t1:
-        state: on
-        brightness: 10       
-      light.t2:
-        state: off
-      light.t3:
-        state: off
-      light.d1:
-        state: off
-      light.d2:
-        state: off
-      light.d3:
-        state: off
-      light.mood:
-        state: on
-        brightness: 10
-      light.k1:
-        state: on
-        brightness: 10
-      light.k2:
-        state: off
-      light.b1:
-        state: on
-        brightness: 100
-      light.b2:
-        state: on
-        brightness: 100
+  entities:
+    light.t1:
+      state: on
+      brightness: 10       
+    light.t2:
+      state: off
+    light.t3:
+      state: off
+    light.d1:
+      state: off
+    light.d2:
+      state: off
+    light.d3:
+      state: off
+    light.mood:
+      state: on
+      brightness: 10
+    light.k1:
+      state: on
+      brightness: 10
+    light.k2:
+      state: off
+    light.b1:
+      state: on
+      brightness: 100
+    light.b2:
+      state: on
+      brightness: 100
 
 - name: AllOff
-    entities:
-      group.all_lights: off
+  entities:
+    group.all_lights: off
