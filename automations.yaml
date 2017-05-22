@@ -2,396 +2,395 @@
 
 ## media player
 - alias: "Media player paused"
-    trigger:
-      platform: state
-      entity_id: media_player.living_room
-      from: 'playing'
-      to: 'paused'
-    action:
-      service: scene.turn_on
-      entity_id: scene.dimmedLights
-    condition:
-      - condition: state
-          entity_id: sun.sun
-          state: 'below_horizon'
+  trigger:
+    platform: state
+    entity_id: media_player.living_room
+    from: 'playing'
+    to: 'paused'
+  action:
+    service: scene.turn_on
+    entity_id: scene.dimmedLights
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
 
 - alias: "Media playing"
-    trigger:
-      platform: state
-      entity_id: media_player.living_room
-      to: 'playing'
-    action:
-      service: scene.turn_on
-      entity_id: scene.Theater_lights
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
+  trigger:
+    platform: state
+    entity_id: media_player.living_room
+    to: 'playing'
+  action:
+    service: scene.turn_on
+    entity_id: scene.Theater_lights
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
 
 # listen for drop down input to MQTT
 - alias: "Set home mode"
-    trigger:
-      platform: state
-      entity_id: input_select.home_mode
-    action:
-      service: mqtt.publish
-      data_template:
-        topic: "homeMode"
-        retain: true
-        payload: '{{ states.input_select.home_mode.state }}'
+  trigger:
+    platform: state
+    entity_id: input_select.home_mode
+  action:
+    service: mqtt.publish
+    data_template:
+      topic: "homeMode"
+      retain: true
+      payload: '{{ states.input_select.home_mode.state }}'
 
 #Home,Away,Playstation,Movie,Boardgame,Goodnight
 - alias: "Home Mode - dim"
-    trigger:
-      platform: mqtt
-      topic: "homeMode"
-      payload: "Home"
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'above_horizon'
-    action:
-      service: scene.turn_on
-      entity_id: scene.dimmedLights
+  trigger:
+    platform: mqtt
+    topic: "homeMode"
+    payload: "Home"
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+  action:
+    service: scene.turn_on
+    entity_id: scene.dimmedLights
 
 - alias: "Home Mode - all on"
-    trigger:
-      platform: mqtt
-      topic: "homeMode"
-      payload: "Home"
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-    action:
-      service: scene.turn_on
-      entity_id: scene.AllOn
+  trigger:
+    platform: mqtt
+    topic: "homeMode"
+    payload: "Home"
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    service: scene.turn_on
+    entity_id: scene.AllOn
 
 - alias: "Away - after sunset"
-    trigger:
-      platform: mqtt
-      topic: "homeMode"
-      payload: "Away"
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-    action:
-      service: scene.turn_on
-      entity_id: scene.dimmedLights
+  trigger:
+    platform: mqtt
+    topic: "homeMode"
+    payload: "Away"
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    service: scene.turn_on
+    entity_id: scene.dimmedLights
 
 - alias: "Away - before sunset"
-    trigger:
-      platform: mqtt
-      topic: "homeMode"
-      payload: "Away"
-    condition:
-      - condition: state
-        entity_id: sun.sun
-        state: 'above_horizon'
-    action:
-      service: scene.turn_on
-      entity_id: scene.AllOff
+  trigger:
+    platform: mqtt
+    topic: "homeMode"
+    payload: "Away"
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+  action:
+    service: scene.turn_on
+    entity_id: scene.AllOff
 
 - alias: "Goodnight"
-    trigger:
-      platform: mqtt
-      topic: "homeMode"
-      payload: "Goodnight"
-    action:
-      service: scene.turn_on
-      entity_id: scene.Goodnight
+  trigger:
+    platform: mqtt
+    topic: "homeMode"
+    payload: "Goodnight"
+  action:
+    service: scene.turn_on
+    entity_id: scene.Goodnight
 
 - alias: "Evening"
-    trigger:
-      platform: mqtt
-      topic: "homeMode"
-      payload: "Evening"
-    action:
-      service: scene.turn_on
-      entity_id: scene.dimmedLights
+  trigger:
+    platform: mqtt
+    topic: "homeMode"
+    payload: "Evening"
+  action:
+    service: scene.turn_on
+    entity_id: scene.dimmedLights
 
 - alias: "Boardgame"
-    trigger:
-      platform: mqtt
-      topic: "homeMode"
-      payload: "Boardgame"
-    action:
-      - service: scene.turn_on
-        entity_id: scene.Boardgame
+  trigger:
+    platform: mqtt
+    topic: "homeMode"
+    payload: "Boardgame"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.Boardgame
 
 - alias: "EveningMode"
-    trigger:
-      platform: mqtt
-      topic: "homeMode"
-      payload: "Evening"
-    action:
-      - service: scene.turn_on
-        entity_id: scene.dimmedLights
+  trigger:
+    platform: mqtt
+    topic: "homeMode"
+    payload: "Evening"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.dimmedLights
 
 - alias: "Dinner"
-    trigger:
-      platform: mqtt
-      topic: "homeMode"
-      payload: "Dinner"
-    action:
-      - service: scene.turn_on
-        entity_id: scene.Dinner
-      - service: media_player.select_source
-        data:
-          entity_id: media_player.dining_room
-          source: 'dinner music (2)'
+  trigger:
+    platform: mqtt
+    topic: "homeMode"
+    payload: "Dinner"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.Dinner
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.dining_room
+        source: 'dinner music (2)'
 #      - service: media_player.media_play
 
 - alias: "Playstation"
-    trigger:
-      platform: mqtt
-      topic: "homeMode"
-      payload: "Playstation"
-    action:
-      - service: scene.turn_on
-        entity_id: scene.dimmedLights
-      - service: switch.turn_on
-        entity_id: switch.ps4_harmony
-      - service: script.turn_on
-        entity_id: script.speakers_on
+  trigger:
+    platform: mqtt
+    topic: "homeMode"
+    payload: "Playstation"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.dimmedLights
+    - service: switch.turn_on
+      entity_id: switch.ps4_harmony
+    - service: script.turn_on
+      entity_id: script.speakers_on
 
 - alias: "TV"
-    trigger:
-      platform: mqtt
-      topic: "homeMode"
-      payload: "TV"
-    action:
-      - service: scene.turn_on
-        entity_id: scene.dimmedLights
-      - service: switch.turn_on
-        entity_id: switch.vizio_harmony
-      - service: script.turn_on
-        entity_id: script.speakers_on
+  trigger:
+    platform: mqtt
+    topic: "homeMode"
+    payload: "TV"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.dimmedLights
+    - service: switch.turn_on
+      entity_id: switch.vizio_harmony
+    - service: script.turn_on
+      entity_id: script.speakers_on
 
 # interface with virtual switches for ALEXA
 - alias: "Playstation_virtual"
-    trigger:
-      platform: mqtt
-      topic: "smartthings/Playstation/switch"
-      payload: "on"
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_mode
-          option: Playstation
+  trigger:
+    platform: mqtt
+    topic: "smartthings/Playstation/switch"
+    payload: "on"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_mode
+        option: Playstation
 
 - alias: "TV_virtual"
-    trigger:
-      platform: mqtt
-      topic: "smartthings/TV/switch"
-      payload: "on"
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_mode
-          option: TV
+  trigger:
+    platform: mqtt
+    topic: "smartthings/TV/switch"
+    payload: "on"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_mode
+        option: TV
 
 - alias: "home_mode_virtual"
-    trigger:
-      platform: mqtt
-      topic: "smartthings/home_mode/switch"
-      payload: "on"
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_mode
-          option: Home
+  trigger:
+    platform: mqtt
+    topic: "smartthings/home_mode/switch"
+    payload: "on"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_mode
+        option: Home
 
 - alias: "Away_virtual"
-    trigger:
-      platform: mqtt
-      topic: "smartthings/Away/switch"
-      payload: "on"
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_mode
-          option: Away
+  trigger:
+    platform: mqtt
+    topic: "smartthings/Away/switch"
+    payload: "on"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_mode
+        option: Away
 
 - alias: "Dinner Mode_virtual"
-    trigger:
-      platform: mqtt
-      topic: "smartthings/DinnerMode/switch"
-      payload: "on"
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_mode
-          option: Dinner
+  trigger:
+    platform: mqtt
+    topic: "smartthings/DinnerMode/switch"
+    payload: "on"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_mode
+        option: Dinner
 
 - alias: "GameMode_virtual"
-    trigger:
-      platform: mqtt
-      topic: "smartthings/GameMode/switch"
-      payload: "on"
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_mode
-          option: Boardgame
+  trigger:
+    platform: mqtt
+    topic: "smartthings/GameMode/switch"
+    payload: "on"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_mode
+        option: Boardgame
 
 - alias: "Sleep Mode_virtual"
-    trigger:
-      platform: mqtt
-      topic: "smartthings/SleepMode/switch"
-      payload: "on"
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_mode
-          option: Goodnight
+  trigger:
+    platform: mqtt
+    topic: "smartthings/SleepMode/switch"
+    payload: "on"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_mode
+        option: Goodnight
 
 - alias: "EveningMode_virtual"
-    trigger:
-      platform: mqtt
-      topic: "smartthings/EveningMode/switch"
-      payload: "on"
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_mode
-          option: Evening
+  trigger:
+    platform: mqtt
+    topic: "smartthings/EveningMode/switch"
+    payload: "on"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_mode
+        option: Evening
 
 # turn off harmony switches
 - alias: "turn off Playstation"
-    trigger:
-      platform: state
-      entity_id: input_select.home_mode
-      from: "Playstation"
-    condition: 
-      condition: or
-      conditions:
-        - condition: state
-          entity_id: 'input_select.home_mode'
-          state: 'Home'
-        - condition: state
-          entity_id: 'input_select.home_mode'
-          state: 'Away'
-        - condition: state
-          entity_id: 'input_select.home_mode'
-          state: 'Boardgame'
-        - condition: state
-          entity_id: 'input_select.home_mode'
-          state: 'Goodnight'
-        - condition: state
-          entity_id: 'input_select.home_mode'
-          state: 'Dinner'
-        - condition: state
-          entity_id: 'input_select.home_mode'
-          state: 'Evening'
-    action:
-      - service: script.turn_on
-        entity_id: script.speakersoff_ps4
+  trigger:
+    platform: state
+    entity_id: input_select.home_mode
+    from: "Playstation"
+  condition: 
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: 'input_select.home_mode'
+        state: 'Home'
+      - condition: state
+        entity_id: 'input_select.home_mode'
+        state: 'Away'
+      - condition: state
+        entity_id: 'input_select.home_mode'
+        state: 'Boardgame'
+      - condition: state
+        entity_id: 'input_select.home_mode'
+        state: 'Goodnight'
+      - condition: state
+        entity_id: 'input_select.home_mode'
+        state: 'Dinner'
+      - condition: state
+        entity_id: 'input_select.home_mode'
+        state: 'Evening'
+  action:
+    - service: script.turn_on
+      entity_id: script.speakersoff_ps4
 
 - alias: "turn off TV"
-    trigger:
-      platform: state
-      entity_id: input_select.home_mode
-      from: "TV"
-    condition:
-      condition: or
-      conditions:
-        - condition: state
-          entity_id: 'input_select.home_mode'
-          state: 'Home'
-        - condition: state
-          entity_id: 'input_select.home_mode'
-          state: 'Away'
-        - condition: state
-          entity_id: 'input_select.home_mode'
-          state: 'Boardgame'
-        - condition: state
-          entity_id: 'input_select.home_mode'
-          state: 'Goodnight'
-        - condition: state
-          entity_id: 'input_select.home_mode'
-          state: 'Dinner'
-        - condition: state
-          entity_id: 'input_select.home_mode'
-          state: 'Evening'
-    action:
-      - service: script.turn_on
-        entity_id: script.speakersoff_vizio   
+  trigger:
+    platform: state
+    entity_id: input_select.home_mode
+    from: "TV"
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: 'input_select.home_mode'
+        state: 'Home'
+      - condition: state
+        entity_id: 'input_select.home_mode'
+        state: 'Away'
+      - condition: state
+        entity_id: 'input_select.home_mode'
+        state: 'Boardgame'
+      - condition: state
+        entity_id: 'input_select.home_mode'
+        state: 'Goodnight'
+      - condition: state
+        entity_id: 'input_select.home_mode'
+        state: 'Dinner'
+      - condition: state
+        entity_id: 'input_select.home_mode'
+        state: 'Evening'
+  action:
+    - service: script.turn_on
+      entity_id: script.speakersoff_vizio   
 
 # pause and resume through virtual switch - ALEXA
 - alias: "pause"
-    trigger:
-      platform: mqtt
-      topic: "smartthings/pause/switch"
-      payload: "on"
-    action:
-      - service: media_player.media_pause
-        entity_id: media_player.living_room
+  trigger:
+    platform: mqtt
+    topic: "smartthings/pause/switch"
+    payload: "on"
+  action:
+    - service: media_player.media_pause
+      entity_id: media_player.living_room
 
-  - alias: "resume"
-    trigger:
-      platform: mqtt
-      topic: "smartthings/resume/switch"
-      payload: "on"
-    action:
-      - service: media_player.media_play
-        entity_id: media_player.living_room
+- alias: "resume"
+  trigger:
+    platform: mqtt
+    topic: "smartthings/resume/switch"
+    payload: "on"
+  action:
+    - service: media_player.media_play
+      entity_id: media_player.living_room
 
 # lighting automation
 - alias: "Welcome Home"
-    trigger:
-      platform: state
-      entity_id: device_tracker.mike_opo
-      to: 'home'
-      from: 'away'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_mode
-          option: Home
-
+  trigger:
+    platform: state
+    entity_id: device_tracker.mike_opo
+    to: 'home'
+    from: 'away'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_mode
+        option: Home
 
 - alias: "lights off - away"
-    trigger:
-      platform: time
-      after: '23:00:00'
-    condition:
-      condition: state
-      entity_id: input_select.home_mode
-      state: Away
-    action:
-      - service: scene.turn_on
-        entity_id: scene.AllOff
+  trigger:
+    platform: time
+    after: '23:00:00'
+  condition:
+    condition: state
+    entity_id: input_select.home_mode
+    state: Away
+  action:
+    - service: scene.turn_on
+      entity_id: scene.AllOff
 
 - alias: "lights on - away"
-    trigger:
-      platform: time
-      after: '18:00:00'
-    condition:
-      condition: state
-      entity_id: input_select.home_mode
-      state: Away
-    action:
-      - service: scene.turn_on
-        entity_id: scene.dimmedLights
+  trigger:
+    platform: time
+    after: '18:00:00'
+  condition:
+    condition: state
+    entity_id: input_select.home_mode
+    state: Away
+  action:
+    - service: scene.turn_on
+      entity_id: scene.dimmedLights
 
 
 # lights control - no mode change
 - alias: "all lights"
-    trigger:
-      platform: mqtt
-      topic: "smartthings/all_lights/switch"
-      payload: "on"
-    action:
-      - service: scene.turn_on
-        entity_id: scene.AllOn
+  trigger:
+    platform: mqtt
+    topic: "smartthings/all_lights/switch"
+    payload: "on"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.AllOn
 
 - alias: "dimmed lights"
-    trigger:
-      platform: mqtt
-      topic: "smartthings/dimmed_lights/switch"
-      payload: "on"
-    action:
-      - service: scene.turn_on
-        entity_id: scene.dimmedLights
+  trigger:
+    platform: mqtt
+    topic: "smartthings/dimmed_lights/switch"
+    payload: "on"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.dimmedLights
