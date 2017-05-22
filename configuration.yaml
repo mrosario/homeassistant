@@ -142,7 +142,7 @@ scene: !include scenes.yaml
 
 
 # scripts to delay speakers turning on/off
-script: !incude scripts.yaml
+script: !include scripts.yaml
 
 
 automation: !include automations.yaml
