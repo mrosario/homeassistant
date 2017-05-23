@@ -40,6 +40,29 @@
       retain: true
       payload: '{{ states.input_select.home_mode.state }}'
 
+#RF triggers
+- alias: "Home Mode - RF"
+  trigger:
+    platform: mqtt
+    topic: "home/RF/homeMode"
+    payload: "on"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_mode
+        option: "Home"
+
+- alias: "Home Mode - RF"
+  trigger:
+    platform: mqtt
+    topic: "home/RF/away"
+    payload: "on"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_mode
+        option: "Away"
+
 #Home,Away,Playstation,Movie,Boardgame,Goodnight
 - alias: "Home Mode - dim"
   trigger:
