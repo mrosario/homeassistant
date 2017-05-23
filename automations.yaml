@@ -51,6 +51,10 @@
       data:
         entity_id: input_select.home_mode
         option: "Home"
+    - service: notify.NOTIFIER_NAME
+      data:
+        title: Home Assistant
+        message: Home mode on via RF remote
 
 - alias: "Home Mode - RF"
   trigger:
@@ -62,6 +66,10 @@
       data:
         entity_id: input_select.home_mode
         option: "Away"
+    - service: notify.NOTIFIER_NAME
+      data:
+        title: Home Assistant
+        message: Away on via RF remote
 
 #Home,Away,Playstation,Movie,Boardgame,Goodnight
 - alias: "Home Mode - dim"

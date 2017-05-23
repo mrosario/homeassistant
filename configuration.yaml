@@ -117,6 +117,12 @@ mqtt:
   #username: !secret mosquitto_username
   #password: !secret mosquitto_pw
 
+# pushbullet notifications
+notify:
+  - name: pushbullet
+    platform: pushbullet
+    api_key: !secret pushbullet_token
+
 input_select:
   home_mode:
     name: Home Mode
