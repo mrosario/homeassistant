@@ -55,10 +55,10 @@
       data:
         title: Home Assistant
         message: Home mode on via RF remote
-    - service: media_player.dining_room.play_media
-      data:
-        media_content_id: spotify:user:12145312779:playlist:4veJhjwt5GpfXJZnNkOeUn
-        media_content_type: music
+    #- service: media_player.dining_room.play_media
+      #data:
+        #media_content_id: spotify:user:12145312779:playlist:4veJhjwt5GpfXJZnNkOeUn
+        #media_content_type: music
 
 - alias: "Home Mode - RF"
   trigger:
