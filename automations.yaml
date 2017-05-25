@@ -59,6 +59,12 @@
       #data:
         #media_content_id: spotify:user:12145312779:playlist:4veJhjwt5GpfXJZnNkOeUn
         #media_content_type: music
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.dining_room
+        # media_content_id: x-sonos-spotify:spotify%3atrack%3a5jtbbkTh7x4UeMVAvF2KaI?sid=12&flags=8224&sn=1
+        media_content_id: aac://http://wbur-sc.streamguys.com:80/wbur.aac
+        media_content_type: music
 
 - alias: "Home Mode - RF"
   trigger:
